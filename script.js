@@ -15,7 +15,7 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
-var spelerX = 900; // x-positie van speler
+var spelerX = 1050; // 1280 - 80 (breedte) - 150 (verte van muur)
 var spelerY = 680; // y-positie van speler
 var vijandX = 300;
 var vijandY = 680;
@@ -90,14 +90,14 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   // vijand
   fill(42, 140, 0);
-  rect(vijandX - 80/2, vijandY - 160, 90, 160);
+  rect(150, vijandY - 160, 90, 160);
   fill(0,0,0);
   ellipse(vijandX, vijandY, 10,10);
   // kogel
 
   // speler
   fill(140, 0, 30);
-   rect(spelerX - 80/2, spelerY - 160, 80, 160);
+   rect(1050, spelerY - 160, 80, 160);
   fill(0,0,0);
   ellipse(spelerX, spelerY, 10,10);
 
