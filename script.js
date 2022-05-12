@@ -35,29 +35,50 @@ var platform3Y = 300;
  */
 var beweegAlles = function () {
   // speler
-  if (keyIsDown(37)) {
+  if (keyIsDown(37)) { // Left Arrow
   spelerX = spelerX - 7;
   }
-  if (keyIsDown(39)) {
+  if (keyIsDown(39)) { // Right Arrow
   spelerX = spelerX + 7;
   }
-  if (keyIsDown(38)) {
+  if (keyIsDown(38)) { // Up Arrow
   spelerY = spelerY - 7;
   }
-  // vijand
-  if (keyIsDown(68)) {
-  vijandX = vijandX + 7;
-  }
-  if (keyIsDown(65)) {
-  vijandX = vijandX - 7;
-  }
-    if (keyIsDown(87)) {
-  vijandY = vijandY - 7;
+  else
+    {spelerY = spelerY + 7
+    }
+  if (spelerY > 694) {
+    spelerY = 694;
   }
 
+  // vijand
+  if (keyIsDown(68)) { // D
+  vijandX = vijandX + 7;
+  }
+  if (keyIsDown(65)) { // A
+  vijandX = vijandX - 7;
+  }
+  if (keyIsDown(87)) { // W
+  vijandY = vijandY - 7;
+  }
+  else
+    {vijandY = vijandY + 7
+    }
+  if (vijandY > 694) {
+    vijandY = 694;
+  }
+      // vallen
+      
+  
+
+    
+  
+
+  
   // kogel
  
   // mechanic
+  
 
   
 };
@@ -90,16 +111,14 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   // vijand
   fill(42, 140, 0);
-  rect(150, vijandY - 160, 90, 160);
-  fill(0,0,0);
-  ellipse(vijandX, vijandY, 10,10);
+  rect(vijandX - 150, vijandY - 160, 90, 160);
   // kogel
 
   // speler
   fill(140, 0, 30);
-   rect(1050, spelerY - 160, 80, 160);
-  fill(0,0,0);
-  ellipse(spelerX, spelerY, 10,10);
+   rect(spelerX, spelerY - 160, 90, 160);
+
+
 
   // punten en health
 
