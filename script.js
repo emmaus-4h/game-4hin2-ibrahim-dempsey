@@ -25,6 +25,10 @@ var platform2X = 100;
 var platform2Y = 300;
 var platform3X = 880; // 1280(breedte) - 100(gat) - 300(balkbreedte)
 var platform3Y = 300;
+var spelerspringt = false;
+var snelheid = 7;
+var spelerspringt2 = false;
+var snelheid2 = 7;
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -41,12 +45,6 @@ var beweegAlles = function () {
   if (keyIsDown(39)) { // Right Arrow
   spelerX = spelerX + 7;
   }
-  if (keyIsDown(38)) { // Up Arrow
-  spelerY = spelerY - 7;
-  }
-  else
-    {spelerY = spelerY + 7
-    }
   if (spelerY > 694) {
     spelerY = 694;
   }
@@ -58,19 +56,35 @@ var beweegAlles = function () {
   if (keyIsDown(65)) { // A
   vijandX = vijandX - 7;
   }
-  if (keyIsDown(87)) { // W
-  vijandY = vijandY - 7;
-  }
-  else
-    {vijandY = vijandY + 7
-    }
   if (vijandY > 694) {
     vijandY = 694;
   }
-      // vallen
-      
-  
-
+      // springen speler
+      if (spelerspringt === false && keyIsDown(38)) {
+    snelheid = 10;
+    spelerspringt = true;
+  }
+      if (spelerspringt === true ) {  // langzamer springen
+    spelerY = spelerY - snelheid;
+    snelheid = snelheid - 0.1;
+  }
+      if (spelerspringt === true && spelerY > 690) {
+    spelerspringt = false;
+    spelerY = 680;
+  }
+      // springer vijand
+        if (spelerspringt2 === false && keyIsDown(87)) {
+    snelheid2 = 10;
+    spelerspringt2 = true;
+  }
+      if (spelerspringt2 === true ) {  // langzamer springen
+    vijandY = vijandY - snelheid2;
+    snelheid2 = snelheid2 - 0.1;
+  }
+      if (spelerspringt2 === true && vijandY > 690) {
+    spelerspringt2 = false;
+    vijandY = 680;
+  }
     
   
 
