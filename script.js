@@ -17,7 +17,7 @@ var spelStatus = SPELEN;
 
 var spelerX = 1050; // 1280 - 80 (breedte) - 150 (verte van muur)
 var spelerY = 680; // y-positie van speler
-var vijandX = 300;
+var vijandX = 230;
 var vijandY = 680;
 var platformX = 300;
 var platformY = 280;
@@ -48,6 +48,12 @@ var beweegAlles = function () {
   if (spelerY > 694) {
     spelerY = 694;
   }
+  if (spelerX > 1280 - 45) {
+    spelerX = 1280 - 45;
+  }
+  if (spelerX < 0 + 45) {
+    spelerX = 0 + 45;
+  }
 
   // vijand
   if (keyIsDown(68)) { // D
@@ -58,6 +64,12 @@ var beweegAlles = function () {
   }
   if (vijandY > 694) {
     vijandY = 694;
+  }
+  if (vijandX < 0 + 45) {
+    vijandX = 0 + 45;
+  }
+    if (vijandX > 1280 - 45) {
+    vijandX = 1280 - 45;
   }
       // springen speler
       if (spelerspringt === false && keyIsDown(38)) {
@@ -125,12 +137,15 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   // vijand
   fill(42, 140, 0);
-  rect(vijandX - 150, vijandY - 160, 90, 160);
+  rect(vijandX - 45, vijandY - 160, 90, 160);
+  ellipse(vijandX, vijandY, 10, 10);
   // kogel
 
   // speler
   fill(140, 0, 30);
-   rect(spelerX, spelerY - 160, 90, 160);
+   rect(spelerX - 45, spelerY - 160, 90, 160);
+  fill(0,0,0);
+  ellipse(spelerX, spelerY, 10, 10);
 
 
 
@@ -142,6 +157,9 @@ fill(140, 0, 200);
   rect(platform2X, platform2Y, 300, 20);
   rect(platform3X , platform3Y , 300, 20);
 };
+  // platform
+
+
 
 /**
  * return true als het gameover is
@@ -185,6 +203,5 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
-
   }
 }
