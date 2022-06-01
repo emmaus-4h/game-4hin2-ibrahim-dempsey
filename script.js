@@ -123,7 +123,6 @@ if (spelerX - vijandX < 50 &&
     console.log("Botsing");
    }
   // botsing kogel tegen vijand
-
   // update punten en health
 
 };
