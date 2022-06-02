@@ -13,7 +13,8 @@
 
 const SPELEN = 1;
 const GAMEOVER = 2;
-var spelStatus = SPELEN;
+const UITLEG = 8;
+var spelStatus = UITLEG;
 
 var spelerX = 1050; // 1280 - 80 (breedte) - 150 (verte van muur)
 var spelerY = 680; // y-positie van speler
@@ -202,5 +203,29 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
+    console.log("game over");
+    textSize(50);
+    fill("white");
+    text("Game Over. Druk spatie om weer te spelen.", 180, 360);
+    if (keyIsDown(32)) {
+      spelStatus = UITLEG;
+    }
+  }
+  if (spelStatus === UITLEG) {
+    // teken uitleg scherm
+    console.log("uitleg");
+    textSize(50);
+    rect(0, 0, 1280, 720);
+    fill("white");
+    textFont('Helvetica');
+    textStyle(BOLD);
+    text("UITLEG: Druk op enter om te beginnen!", 180, 360);
+     fill(117, 147, 217);
+    if (keyIsDown(13)) {
+      spelStatus = SPELEN;
+    }
+    
+    
+    
   }
 }
