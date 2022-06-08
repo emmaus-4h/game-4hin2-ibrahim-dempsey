@@ -18,18 +18,25 @@ var spelStatus = UITLEG;
 
 var spelerX = 1050; // 1280 - 80 (breedte) - 150 (verte van muur)
 var spelerY = 680; // y-positie van speler
+
 var vijandX = 230;
 var vijandY = 680;
+
 var platformX = 300;
 var platformY = 280;
 var platform2X = 100;
 var platform2Y = 300;
 var platform3X = 880; // 1280(breedte) - 100(gat) - 300(balkbreedte)
 var platform3Y = 300;
+
 var spelerspringt = false;
 var snelheid = 7;
 var spelerspringt2 = false;
 var snelheid2 = 7;
+
+var kogelX = 400;
+var kogelY = 300;
+var kogelvliegt = false;
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -103,11 +110,18 @@ var beweegAlles = function () {
 
   
   // kogel
- 
-  // mechanic
-  
-
-  
+ if (kogelvliegt === false && keyIsDown(70)) {
+   kogelvliegt = true;
+   kogelX = spelerX;
+   kogelY = spelerY;
+    }
+  if (kogelvliegt === true) {
+    kogelY = kogelY - 1;
+  }
+  if kogelvliegt === true &&
+    kogelY < 0) {
+    kogelvliegt = false;
+  }
 };
 
 /**
@@ -140,7 +154,8 @@ fill (117, 147, 217)
   rect(vijandX - 45, vijandY - 160, 90, 160);
   ellipse(vijandX, vijandY, 10, 10);
   // kogel
-
+fill ("red")
+  ellipse(kogelX, kogelY, 50, 50);
   // speler
   fill(140, 0, 30);
    rect(spelerX - 45, spelerY - 160, 90, 160);
