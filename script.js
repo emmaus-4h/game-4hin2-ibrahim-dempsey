@@ -116,9 +116,9 @@ var beweegAlles = function () {
    kogelY = spelerY;
     }
   if (kogelvliegt === true) {
-    kogelY = kogelY - 1;
+    kogelX = kogelX - 7;
   }
-  if kogelvliegt === true &&
+  if (kogelvliegt === true &&
     kogelY < 0) {
     kogelvliegt = false;
   }
@@ -156,7 +156,9 @@ fill (117, 147, 217)
   // kogel
 fill ("red")
   ellipse(kogelX, kogelY, 50, 50);
-  // speler
+  kogelX = spelerX;
+  kogelY = spelerY;
+    // speler
   fill(140, 0, 30);
    rect(spelerX - 45, spelerY - 160, 90, 160);
   fill(0,0,0);
