@@ -38,6 +38,9 @@ var kogelX = 400;
 var kogelY = 300;
 var kogelvliegt = false;
 
+var img; // plaatje
+var img2;
+
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -131,12 +134,8 @@ var beweegAlles = function () {
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-if (spelerX - vijandX < 50 &&
-    spelerX - vijandX > -50 &&
-    spelerY - vijandY < 50 &&
-    spelerY - vijandY > -50) {
-    console.log("Botsing");
-   }
+
+   
   // botsing kogel tegen vijand
   // update punten en health
 
@@ -149,6 +148,7 @@ var tekenAlles = function () {
   // achtergrond
 fill (117, 147, 217)
   rect(0,0,1280,720)
+  image(img, 0, 0, 1280, 720);
   // vijand
   fill(42, 140, 0);
   rect(vijandX - 45, vijandY - 160, 90, 160);
@@ -169,7 +169,7 @@ fill ("red")
   // punten en health
 
   // map & mechanic
-fill(140, 0, 200);
+fill(0, 0, 0);
   rect(platformX - 1000, platformY + 400, 10000, 50);
   rect(platform2X, platform2Y, 300, 20);
   rect(platform3X , platform3Y , 300, 20);
@@ -183,6 +183,13 @@ fill(140, 0, 200);
  * anders return false
  */
 var checkGameOver = function () {
+  if (spelerX - vijandX < 50 &&
+    spelerX - vijandX > -50 &&
+    spelerY - vijandY < 50 &&
+    spelerY - vijandY > -50) {
+    console.log("Botsing");
+    return true;
+  }
   // check of HP 0 is , of tijd op is, of ...
   return false;
 };
@@ -191,6 +198,12 @@ var checkGameOver = function () {
 /* setup() en draw() functies / hoofdprogramma   */
 /* ********************************************* */
 
+// Functie wordt 1x uitgevoerd voor setup
+// Plaatjes worden hier geladen
+function preload() {
+  img = loadImage('background.jpg');
+  img2 = loadImage('gameover.png');
+}
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
@@ -217,15 +230,23 @@ function draw() {
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
     }
+    console.log("spelen");
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
     console.log("game over");
     textSize(50);
-    fill("white");
-    text("Game Over. Druk spatie om weer te spelen.", 180, 360);
+    fill(0, 0, 0);
+    text("Druk spatie om weer te spelen!", 280, 600);
+    image(img2, 320, 150, 640, 360);
     if (keyIsDown(32)) {
-      spelStatus = UITLEG;
+      spelerX = 1050; // x-positie van speler
+      spelerY = 680; // y-positie van speler
+      vijandX = 230; // x-positie van vijand
+      vijandY = 680; // y-positie van vijand
+      spelerspringt = false;
+      spelerspringt2 = false;
+      spelStatus = SPELEN;
     }
   }
   if (spelStatus === UITLEG) {

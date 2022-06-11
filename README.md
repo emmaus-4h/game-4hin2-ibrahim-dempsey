@@ -20,7 +20,7 @@ Basis: uitleg, spelen, afgaan en punten
 - [x] 3. beweeg speler
         - Zet je code in de functie beweegAlles()
         - Kies de afmeting van speler
-        - Gebruik variabalen spelerX en spelerY als middelpunt van de speler
+        - Gebruik variabelen spelerX en spelerY als middelpunt van de speler
 - [x] 4. *(pas de volgende stappen in de planning zelf aan)*
 - [x] x. teken je tegenspeler (vijanden of dingen die je moet pakken of doelen of ...)
 - [x] x. teken een bal, kogel (als die in je spel zit)
