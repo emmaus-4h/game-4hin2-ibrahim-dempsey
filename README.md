@@ -24,7 +24,7 @@ Basis: uitleg, spelen, afgaan en punten
 - [x] 4. *(pas de volgende stappen in de planning zelf aan)*
 - [x] x. teken je tegenspeler (vijanden of dingen die je moet pakken of doelen of ...)
 - [x] x. teken een bal, kogel (als die in je spel zit)
-- [] x. beweeg de tegenspeler of je bal
+- [x] x. beweeg de tegenspeler of je bal
 - [x] x. zet punten op het scherm 
 - [ ] x. zorg dat je punten kunt scoren
 - [x] x. zorg dat je af kunt

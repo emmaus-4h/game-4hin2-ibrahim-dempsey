@@ -34,12 +34,17 @@ var snelheid = 7;
 var spelerspringt2 = false;
 var snelheid2 = 7;
 
-var kogelX = 400;
-var kogelY = 300;
+var kogelX = 0;
+var kogelY = 0;
+var kogel2X = 0;
+var kogel2Y = 0;
 var kogelvliegt = false;
+var kogelvliegt2 = false;
 
 var img; // plaatje
 var img2; // plaatje 2
+
+var health = 100;
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -114,15 +119,16 @@ var beweegAlles = function () {
      keyIsDown(17)) { // start schieten
    kogelvliegt = true;
    kogelX = spelerX;
-   kogelY = spelerY;
-    }
+   kogelY = spelerY - 70;
+  }
   if (kogelvliegt === true) { // kogelvliegt
-    kogelX = kogelX - 7;
+    kogelX = kogelX - 10;
   }
   if (kogelvliegt === true &&
-    kogelY < 0) { // kogel verdwijnt
+    kogelX < -15) { // kogel verdwijnt
     kogelvliegt = false;
   }
+
 };
 
 /**
@@ -135,9 +141,20 @@ var verwerkBotsing = function () {
 
    
   // botsing kogel tegen vijand
+  if (kogelX - vijandX < 50 &&
+kogelX - vijandX >-50 &&
+kogelY - vijandY < 50 &&
+kogelY - vijandY >-50) {
+  text("Health:"+0, 25, 50);
+}
+  if (health === 0) {
+    spelStatus = GAMEOVER;
+  }
   // update punten en health
 
+  
 };
+  
 
 /**
  * Tekent spelscherm
@@ -148,21 +165,19 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   image(img, 0, 0, 1280, 720);
   // vijand
-  image(img3, vijandX - 45, vijandY - 150, 100, 130);
+  image(img4, vijandX - 45, vijandY - 150, 100, 130);
   
     // speler
-  image(img4, spelerX - 45, spelerY - 150, 70, 130);
+  image(img3, spelerX - 45, spelerY - 150, 70, 130);
 
     // kogel
   fill("red")
-  ellipse(kogelX, kogelY, 50, 50);
-  kogelX = spelerX;
-  kogelY = spelerY;
+  ellipse(kogelX, kogelY, 30, 30);
 
   // punten en health
   fill("black")
   textSize(50)
-  text("Health: 100", 25, 50);
+  text("Health:"+health, 25, 50);
   
   // map & mechanic
 fill(0, 0, 0);
@@ -179,10 +194,10 @@ fill(0, 0, 0);
  * anders return false
  */
 var checkGameOver = function () {
-  if (spelerX - vijandX < 50 &&
-    spelerX - vijandX > -50 &&
-    spelerY - vijandY < 50 &&
-    spelerY - vijandY > -50) {
+  if (kogelX - vijandX < 50 &&
+    kogelX - vijandX > -50 &&
+    kogelY - vijandY < 50 &&
+    kogelY - vijandY > -50) {
     console.log("Botsing");
     return true;
   }
@@ -258,10 +273,14 @@ function draw() {
     fill("white");
     textFont('Helvetica');
     textStyle(BOLD);
-    text("Je hebt twee spelers.", 150, 160);
-    text("De eerste speler gebruikt 'W, A, S, D' om te bewegen, en 'F' om te schieten.", 150, 260);
-    text("De andere speler gebruikt de pijltjes om te bewegen, en de rechter 'CTRL' om te schieten.", 150, 360);
-    text("Druk op enter om te beginnen!", 150, 460);
+    text("Je hebt twee spelers.", 450, 160);
+    text("De eerste speler gebruikt 'W, A, S, D' om te bewegen,"
+        ,150, 260);
+    text("en moet de kogels vermijden.", 150, 360);
+    text("De andere speler gebruikt de pijltjes om te bewegen,"
+         ,150, 460);
+    text("en de rechter 'CTRL' om te schieten.", 150, 560);
+    text("Druk op enter om te beginnen!", 350, 660);
      fill(117, 147, 217);
     if (keyIsDown(13)) {
       spelStatus = SPELEN;
