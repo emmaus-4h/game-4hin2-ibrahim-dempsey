@@ -165,10 +165,10 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   image(img, 0, 0, 1280, 720);
   // vijand
-  image(img4, vijandX - 45, vijandY - 150, 100, 130);
+  image(img4, vijandX - 45, vijandY - 110, 100, 130);
   
     // speler
-  image(img3, spelerX - 45, spelerY - 150, 70, 130);
+  image(img3, spelerX - 45, spelerY - 110, 70, 130);
 
     // kogel
   fill("red")
