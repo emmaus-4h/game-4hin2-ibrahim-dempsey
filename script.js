@@ -111,7 +111,7 @@ var beweegAlles = function () {
     
   // kogel
  if (kogelvliegt === false &&
-     keyIsDown(70)) { // start schieten
+     keyIsDown(17)) { // start schieten
    kogelvliegt = true;
    kogelX = spelerX;
    kogelY = spelerY;
@@ -148,13 +148,10 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   image(img, 0, 0, 1280, 720);
   // vijand
-  image(img4, vijandX - 45, vijandY - 160, 100, 125);
-  ellipse(vijandX, vijandY, 10, 10);
+  image(img3, vijandX - 45, vijandY - 150, 100, 130);
   
     // speler
-  image(img3, spelerX - 45, spelerY - 160, 180, 180);
-  fill(0,0,0);
-  ellipse(spelerX, spelerY, 10, 10);
+  image(img4, spelerX - 45, spelerY - 150, 70, 130);
 
     // kogel
   fill("red")
@@ -202,8 +199,8 @@ var checkGameOver = function () {
 function preload() {
   img = loadImage('background.jpg');
   img2 = loadImage('gameover.png');
-  img3 = loadImage('speler.png');
-  img4 = loadImage('vijand.png');
+  img3 = loadImage('speler.png'); // foto vijand
+  img4 = loadImage('vijand.png'); // foto speler
 }
 /**
  * setup
@@ -256,12 +253,15 @@ function draw() {
   if (spelStatus === UITLEG) {
     // teken uitleg scherm
     console.log("uitleg");
-    textSize(50);
+    textSize(40);
     rect(0, 0, 1280, 720);
     fill("white");
     textFont('Helvetica');
     textStyle(BOLD);
-    text("UITLEG: Druk op enter om te beginnen!", 180, 360);
+    text("Je hebt twee spelers.", 150, 160);
+    text("De eerste speler gebruikt 'W, A, S, D' om te bewegen, en 'F' om te schieten.", 150, 260);
+    text("De andere speler gebruikt de pijltjes om te bewegen, en de rechter 'CTRL' om te schieten.", 150, 360);
+    text("Druk op enter om te beginnen!", 150, 460);
      fill(117, 147, 217);
     if (keyIsDown(13)) {
       spelStatus = SPELEN;
