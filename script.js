@@ -39,7 +39,7 @@ var kogelY = 300;
 var kogelvliegt = false;
 
 var img; // plaatje
-var img2;
+var img2; // plaatje 2
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -109,20 +109,18 @@ var beweegAlles = function () {
     vijandY = 680;
   }
     
-  
-
-  
   // kogel
- if (kogelvliegt === false && keyIsDown(70)) {
+ if (kogelvliegt === false &&
+     keyIsDown(70)) { // start schieten
    kogelvliegt = true;
    kogelX = spelerX;
    kogelY = spelerY;
     }
-  if (kogelvliegt === true) {
+  if (kogelvliegt === true) { // kogelvliegt
     kogelX = kogelX - 7;
   }
   if (kogelvliegt === true &&
-    kogelY < 0) {
+    kogelY < 0) { // kogel verdwijnt
     kogelvliegt = false;
   }
 };
@@ -150,24 +148,25 @@ fill (117, 147, 217)
   rect(0,0,1280,720)
   image(img, 0, 0, 1280, 720);
   // vijand
-  fill(42, 140, 0);
-  rect(vijandX - 45, vijandY - 160, 90, 160);
+  image(img4, vijandX - 45, vijandY - 160, 100, 125);
   ellipse(vijandX, vijandY, 10, 10);
-  // kogel
-fill ("red")
-  ellipse(kogelX, kogelY, 50, 50);
-  kogelX = spelerX;
-  kogelY = spelerY;
+  
     // speler
-  fill(140, 0, 30);
-   rect(spelerX - 45, spelerY - 160, 90, 160);
+  image(img3, spelerX - 45, spelerY - 160, 180, 180);
   fill(0,0,0);
   ellipse(spelerX, spelerY, 10, 10);
 
-
+    // kogel
+  fill("red")
+  ellipse(kogelX, kogelY, 50, 50);
+  kogelX = spelerX;
+  kogelY = spelerY;
 
   // punten en health
-
+  fill("black")
+  textSize(50)
+  text("Health: 100", 25, 50);
+  
   // map & mechanic
 fill(0, 0, 0);
   rect(platformX - 1000, platformY + 400, 10000, 50);
@@ -203,6 +202,8 @@ var checkGameOver = function () {
 function preload() {
   img = loadImage('background.jpg');
   img2 = loadImage('gameover.png');
+  img3 = loadImage('speler.png');
+  img4 = loadImage('vijand.png');
 }
 /**
  * setup
@@ -217,6 +218,7 @@ function setup() {
   background(117, 147, 217);
 }
 
+  
 /**
  * draw
  * de code in deze functie wordt 50 keer per seconde
@@ -232,6 +234,7 @@ function draw() {
     }
     console.log("spelen");
   }
+  
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
     console.log("game over");
@@ -249,6 +252,7 @@ function draw() {
       spelStatus = SPELEN;
     }
   }
+  
   if (spelStatus === UITLEG) {
     // teken uitleg scherm
     console.log("uitleg");
